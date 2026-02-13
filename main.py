@@ -1,5 +1,6 @@
 import sys
-from config import ensure_dirs, INPUT_FILE_PATH
+import os
+from config import ensure_dirs, INPUT_FILE_PATH, SUBJECTS_DIR
 from step1_input import run_step1_input
 from step2_3_preprocess import run_step2_3_preprocess
 from step4_segmentation import run_step4_segmentation
@@ -8,28 +9,41 @@ from step6_mesh import run_step6_mesh_generation
 from step7_stats import run_step7_full_stats
 
 def main():
-    print("🚀 KHỞI ĐỘNG PIPELINE ALZHEIMER (Refactored)")
+    print("🚀 KHỞI ĐỘNG PIPELINE ALZHEIMER (Refactored - Subject Centric)")
     ensure_dirs()
     
     input_path = sys.argv[1] if len(sys.argv) > 1 else INPUT_FILE_PATH
     print(f"📂 Input: {input_path}")
+
+    # Detect Subject ID
+    fname = os.path.basename(input_path)
+    if fname.endswith(".nii.gz"):
+        sid = fname[:-7]
+    elif fname.endswith(".nii"):
+        sid = fname[:-4]
+    else:
+         # remove extension
+        sid = os.path.splitext(fname)[0]
     
-    # Run pipeline steps sequentially with early exit on failure
+    # Remove standard preprocessing suffixes to get cleaner ID if needed
+    sid = sid.replace("_final_preproc", "").replace("_conform", "")
+    
+    # Set SUBJECTS_DIR env var
+    os.environ["SUBJECTS_DIR"] = SUBJECTS_DIR
+    print(f"export SUBJECTS_DIR={SUBJECTS_DIR}")
+    print(f"👤 Subject ID: {sid}")
+    
     try:
-        # Step 1: Input Processing
-        nifti_file = run_step1_input(input_path)
-        if not nifti_file: return
-
-        # # Step 2 & 3: Preprocessing
-        # preproc_file = run_step2_3_preprocess(nifti_file)
-        # if not preproc_file: return
-
-        # # Step 4: Segmentation
-        # seg_file = run_step4_segmentation(preproc_file)
-        # if not seg_file: return
+        # Step 1: Input Processing -> mri/orig.mgz
+        mri_file = run_step1_input(input_path, sid, SUBJECTS_DIR)
+        if not mri_file: return
+        
+        # NOTE: Subsequent steps need to be updated to accept SID and know where to look.
+        # Step 5 (CorticalFlow) was recently refactored to look into SUBJECTS_DIR type structure 
+        # via cortical_flow_recon.py, but we need to ensure the wrapper calls it correctly.
         
         # Step 5: Cortical Surface Reconstruction (CorticalFlow)
-        cf_output_dir = run_step5_cortical_flow(nifti_file)
+        cf_output_dir = run_step5_cortical_flow(mri_file, sid) 
         if not cf_output_dir: print("⚠️ CorticalFlow failed, continuing pipeline...")
 
         print("\n🏁 PIPELINE HOÀN TẤT!")

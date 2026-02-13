@@ -1,23 +1,25 @@
 import os
 import subprocess
-from config import DIRS
 
-def run_step1_input(input_path):
+def run_step1_input(input_path, subject_id, subjects_dir):
     """
     BƯỚC 1: XỬ LÝ ĐẦU VÀO (Dùng FreeSurfer mri_convert --conform)
     Resamples image to 1mm isotropic, 256^3, and standard LIA orientation.
+    Saves as mri/orig.mgz in the subject's directory.
     """
-    print("\n[1/5] 📥 ĐANG XỬ LÝ ĐẦU VÀO (mri_convert --conform)...")
-    output_dir = DIRS["step1"]
-    filename = os.path.basename(input_path)
-    base_name = filename.replace(".img", "").replace(".nii.gz", "").replace(".nii", "")
-    final_path = os.path.join(output_dir, base_name + "_conform.img") # mri_convert often defaults to mgz if not specified, but let's stick to nii.gz or img if user wants. FS usually likes mgz. Let's use .nii.gz for compatibility with other tools if needed, but 'orig.mgz' suggests mgz. 
-    # User's request said "ensure output looks like mri/orig.mgz". 
-    # Let's output .nii.gz for now as the pipeline expects it, but formatted correctly.
-    final_path = os.path.join(output_dir, base_name + "_conform.nii.gz")
+    print(f"\n[1/5] 📥 ĐANG XỬ LÝ ĐẦU VÀO CHO {subject_id} (mri_convert --conform)...")
+    
+    # Define subject mri directory
+    # Structure: <subjects_dir>/<subject_id>/mri
+    subject_dir = os.path.join(subjects_dir, subject_id)
+    mri_dir = os.path.join(subject_dir, "mri")
+    os.makedirs(mri_dir, exist_ok=True)
+    
+    # Output file: mri/orig.mgz (Standard FreeSurfer naming)
+    final_path = os.path.join(mri_dir, "orig.mgz")
 
     try:
-        print(f" -> Đang chạy mri_convert cho: {filename}")
+        print(f" -> Đang chạy mri_convert cho: {os.path.basename(input_path)}")
         
         # Command: mri_convert --conform input output
         cmd = ["mri_convert", "--conform", input_path, final_path]
@@ -25,7 +27,7 @@ def run_step1_input(input_path):
         print(f"    CMD: {' '.join(cmd)}")
         result = subprocess.run(cmd, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         
-        print(result.stdout)
+        # print(result.stdout) # Optional: print only if strict need
         
         if os.path.exists(final_path):
             print(f"✅ Đã xử lý xong: {final_path}")

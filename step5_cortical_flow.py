@@ -1,63 +1,54 @@
 import os
 import sys
 import subprocess
-from config import DIRS, TOOLS, OUTPUT_ROOT
+from config import TOOLS, SUBJECTS_DIR
 
-def run_step5_cortical_flow(input_nifti):
+def run_step5_cortical_flow(input_file, subject_id):
     """
     BƯỚC 5: CORTICAL SURFACE RECONSTRUCTION (CorticalFlow)
-    Wrapper cho script recon_all.sh trong folder CorticalFlow
+    Wrapper cho script recon_all.sh
     """
-    print("\n[4/5] 🧠 ĐANG CHẠY CORTICALFLOW RECONSTRUCTION...")
+    print("\n[4/5] 🧠 ĐANG CHẠY CORTICALFLOW RECONSTRUCTION (Shell Script)...")
     
     # Define paths
-    output_dir = DIRS.get("step5", os.path.join(OUTPUT_ROOT, "step5_cortical_flow"))
-    cortical_flow_root = TOOLS["cortical_flow_root"] # e.g. .../tools/CorticalFlow
+    cortical_flow_root = TOOLS["cortical_flow_root"] 
     recon_script = "./recon_all.sh"
     
     # Environment Setup
-    # The 'cortical-flow' folder IS the venv
     venv_path = os.path.join(cortical_flow_root, "cortical-flow")
-    venv_bin = os.path.join(venv_path, "bin") # Linux/MacOS
-    
-    # Path handling
-    input_dir = os.path.dirname(input_nifti)
-    fname = os.path.basename(input_nifti)
-    
-    # Handle filename extensions to get ID
-    # Usually: subject_01.nii.gz
-    if fname.endswith(".nii.gz"):
-        sid = fname[:-7]
-    elif fname.endswith(".nii"):
-        sid = fname[:-4]
+    if sys.platform == "win32":
+        venv_python = os.path.join(venv_path, "Scripts", "python.exe")
     else:
-        sid = os.path.splitext(fname)[0]
+        venv_python = os.path.join(venv_path, "bin", "python")
         
-    # Remove preprocessing suffixes if present (adjust logic as needed)
-    sid = sid.replace("_final_preproc", "").replace("_conform", "")
-
     # Output check
-    expected_output_lh = os.path.join(output_dir, sid, "CFPP", sid, f"{sid}_lh_white_native.pial")
+    expected_output_lh = os.path.join(SUBJECTS_DIR, subject_id, "surf", "lh.pial")
+    
     if os.path.exists(expected_output_lh):
-         print(f"✅ Đã có kết quả CorticalFlow cho {sid}")
-         return os.path.join(output_dir, sid)
+         print(f"✅ Đã có kết quả CorticalFlow cho {subject_id}")
+         return os.path.join(SUBJECTS_DIR, subject_id)
 
-    print(f" >>> Input: {input_nifti}")
-    print(f" >>> Subject ID: {sid}")
-    print(f" >>> Input Dir: {input_dir}")
+    print(f" >>> Input: {input_file}")
+    print(f" >>> Subject ID: {subject_id}")
+    print(f" >>> Subjects Dir: {SUBJECTS_DIR}")
     print(f" >>> CWD: {cortical_flow_root}")
 
-    # Prepare environment with venv at the front of PATH
+    # Prepare environment with venv python for the shell script to use
     env = os.environ.copy()
-    if os.path.exists(venv_bin):
-        env["PATH"] = venv_bin + os.pathsep + env["PATH"]
-        print(f" >>> Using venv at: {venv_path}")
+    if os.path.exists(venv_python):
+        env["VENV_PYTHON"] = venv_python
+        print(f" >>> Using python at: {venv_python}")
     else:
-        print(f"⚠️ Warning: Venv bin not found at {venv_bin}. Relying on system PATH.")
+        print(f"⚠️ Warning: Venv python not found at {venv_python}. Relying on system default.")
 
-    # Command: ./recon_all.sh <subject_id> <input_file> <output_dir>
-    # NOTE: Modified logic to pass full file path, as recon_all.sh was updated to support this.
-    cmd = [recon_script, sid, input_nifti, output_dir]
+    # Command: ./recon_all.sh <subject_id> <input_file> <subjects_dir>
+    # Note: We run this from the CorticalFlow root directory so relative paths in script work
+    cmd = [
+        recon_script,
+        subject_id,
+        input_file,
+        SUBJECTS_DIR
+    ]
 
     try:
         print(f" >>> Executing: {' '.join(cmd)}")
@@ -66,7 +57,7 @@ def run_step5_cortical_flow(input_nifti):
         process = subprocess.Popen(
             cmd,
             cwd=cortical_flow_root, # Run inside CorticalFlow folder
-            env=env,                # With venv in PATH
+            env=env,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             text=True
@@ -82,8 +73,8 @@ def run_step5_cortical_flow(input_nifti):
             print("❌ Lỗi CorticalFlow Reconstruction (Exit Code != 0)")
             return None
             
-        print(f" ✅ CorticalFlow thành công. Output tại: {os.path.join(output_dir, sid)}")
-        return os.path.join(output_dir, sid)
+        print(f" ✅ CorticalFlow thành công. Output tại: {os.path.join(SUBJECTS_DIR, subject_id)}")
+        return os.path.join(SUBJECTS_DIR, subject_id)
 
     except Exception as e:
         print(f"❌ Lỗi gọi subprocess CorticalFlow: {e}")
