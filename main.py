@@ -29,17 +29,8 @@ def main():
         # if not seg_file: return
         
         # Step 5: Cortical Surface Reconstruction (CorticalFlow)
-        # We will use the output from Step 1 (conformed input) as requested.
         cf_output_dir = run_step5_cortical_flow(nifti_file)
-        if not cf_output_dir: print("⚠️ CorticalFlow failed, continuing pipeline...") # Optional: continue or return
-
-        # # Step 7: Stats (Placeholder)
-        # # Note: Stats step takes both segmentation and normalized file
-        # run_step7_full_stats(seg_file=seg_file, norm_file=preproc_file)
-
-        # # Step 6: Mesh Generation (Placeholder)
-        # # Note: Mesh generation uses the preprocessed file
-        # run_step6_mesh_generation(preproc_file)
+        if not cf_output_dir: print("⚠️ CorticalFlow failed, continuing pipeline...")
 
         print("\n🏁 PIPELINE HOÀN TẤT!")
         
