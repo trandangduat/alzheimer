@@ -4,3 +4,5 @@ __pycache__
 *.pyc
 subjects/*
 models/*
+subjects2/*
+freesurfer_result/*
