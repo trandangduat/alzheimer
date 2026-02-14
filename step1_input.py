@@ -31,6 +31,18 @@ def run_step1_input(input_path, subject_id, subjects_dir):
         
         if os.path.exists(final_path):
             print(f"✅ Đã xử lý xong: {final_path}")
+
+            # Tạo talairach.xfm
+            transforms_dir = os.path.join(mri_dir, "transforms")
+            os.makedirs(transforms_dir, exist_ok=True)
+            talairach_xfm = os.path.join(transforms_dir, "talairach.xfm")
+
+            print(f" -> Đang chạy talairach_avi...")
+            cmd_tal = ["talairach_avi", "--i", final_path, "--xfm", talairach_xfm]
+            print(f"    CMD: {' '.join(cmd_tal)}")
+            subprocess.run(cmd_tal, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            print(f"✅ Đã tạo talairach transform: {talairach_xfm}")
+
             return final_path
         else:
             print("❌ Lỗi: File output không tồn tại sau khi chạy mri_convert.")

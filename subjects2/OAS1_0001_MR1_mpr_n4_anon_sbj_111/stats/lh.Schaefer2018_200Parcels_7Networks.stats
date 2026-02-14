@@ -1,0 +1,160 @@
+# Table of FreeSurfer cortical parcellation anatomical statistics 
+# 
+# CreationTime 2026/02/14-12:35:28-GMT
+# generating_program mris_anatomical_stats
+# cvs_version 8.1.0
+# mrisurf.c-cvs_version 8.1.0
+# cmdline mris_anatomical_stats -f /mnt/c/Users/ADMIN/Desktop/MRI/alzheimer/subjects2/OAS1_0001_MR1_mpr_n4_anon_sbj_111/stats/lh.Schaefer2018_200Parcels_7Networks.stats -b -a /mnt/c/Users/ADMIN/Desktop/MRI/alzheimer/subjects2/OAS1_0001_MR1_mpr_n4_anon_sbj_111/label/lh.Schaefer2018_200Parcels_7Networks_order.annot OAS1_0001_MR1_mpr_n4_anon_sbj_111 lh 
+# sysname  Linux
+# hostname DESKTOP-L5O6QCU
+# machine  x86_64
+# user     trandangduat
+# 
+# SUBJECTS_DIR /mnt/c/Users/ADMIN/Desktop/MRI/alzheimer/subjects2
+# anatomy_type surface
+# subjectname OAS1_0001_MR1_mpr_n4_anon_sbj_111
+# hemi lh
+# AnnotationFile /mnt/c/Users/ADMIN/Desktop/MRI/alzheimer/subjects2/OAS1_0001_MR1_mpr_n4_anon_sbj_111/label/lh.Schaefer2018_200Parcels_7Networks_order.annot
+# AnnotationFileTimeStamp 2026/02/14 19:32:02
+# Measure Cortex, NumVert, Number of Vertices, 379970, unitless
+# Measure Cortex, WhiteSurfArea, White Surface Total Area, 70643.6, mm^2
+# BrainVolStatsFixed see surfer.nmr.mgh.harvard.edu/fswiki/BrainVolStatsFixed
+# Measure BrainSeg, BrainSegVol, Brain Segmentation Volume, 1330678.000000, mm^3
+# Measure BrainSegNotVent, BrainSegVolNotVent, Brain Segmentation Volume Without Ventricles, 943416.000000, mm^3
+# Measure BrainSegNotVentSurf, BrainSegVolNotVentSurf, Brain Segmentation Volume Without Ventricles from Surf, 987417.578247, mm^3
+# Measure Cortex, CortexVol, Total cortical gray matter volume, 0.000000, mm^3
+# Measure SupraTentorial, SupraTentorialVol, Supratentorial volume, 804567.578247, mm^3
+# Measure SupraTentorialNotVent, SupraTentorialVolNotVent, Supratentorial volume, 748724.578247, mm^3
+# Measure EstimatedTotalIntraCranialVol, eTIV, Estimated Total Intracranial Volume, 1329788.421902, mm^3
+# NTableCols 10
+# TableCol  1 ColHeader StructName
+# TableCol  1 FieldName Structure Name
+# TableCol  1 Units     NA
+# TableCol  2 ColHeader NumVert
+# TableCol  2 FieldName Number of Vertices
+# TableCol  2 Units     unitless
+# TableCol  3 ColHeader SurfArea
+# TableCol  3 FieldName Surface Area
+# TableCol  3 Units     mm^2
+# TableCol  4 ColHeader GrayVol
+# TableCol  4 FieldName Gray Matter Volume
+# TableCol  4 Units     mm^3
+# TableCol  5 ColHeader ThickAvg 
+# TableCol  5 FieldName Average Thickness
+# TableCol  5 Units     mm
+# TableCol  6 ColHeader ThickStd
+# TableCol  6 FieldName Thickness StdDev
+# TableCol  6 Units     mm 
+# TableCol  7 ColHeader MeanCurv
+# TableCol  7 FieldName Integrated Rectified Mean Curvature
+# TableCol  7 Units     mm^-1
+# TableCol  8 ColHeader GausCurv 
+# TableCol  8 FieldName Integrated Rectified Gaussian Curvature
+# TableCol  8 Units     mm^-2
+# TableCol  9 ColHeader  FoldInd
+# TableCol  9 FieldName  Folding Index 
+# TableCol  9 Units      unitless 
+# TableCol 10 ColHeader CurvInd
+# TableCol 10 FieldName Intrinsic Curvature Index
+# TableCol 10 Units     unitless
+# ColHeaders StructName NumVert SurfArea GrayVol ThickAvg ThickStd MeanCurv GausCurv FoldInd CurvInd
+7Networks_LH_Vis_1                         4258    675   1445  2.051 0.605     0.028     0.008       12     1.3
+7Networks_LH_Vis_2                         5713   1588   3517  2.384 0.592     0.087     0.036       75    11.2
+7Networks_LH_Vis_3                         3603    823   2173  2.376 0.519     0.050     0.014       16     2.3
+7Networks_LH_Vis_4                         4106    791   1958  2.251 0.695     0.044     0.014       19     2.5
+7Networks_LH_Vis_5                         2416    693   1989  2.338 0.560     0.086     0.028       23     3.0
+7Networks_LH_Vis_6                         5603    339    667  1.985 0.640     0.013     0.006        9     1.3
+7Networks_LH_Vis_7                         3552   1002   2004  1.628 0.468     0.060     0.017       25     2.7
+7Networks_LH_Vis_8                         3342    785   2043  2.488 0.356     0.051     0.013       17     1.9
+7Networks_LH_Vis_9                         3157    581   1255  2.146 0.406     0.043     0.013       11     1.6
+7Networks_LH_Vis_10                        6079   1283   2038  1.567 0.403     0.049     0.014       34     3.9
+7Networks_LH_Vis_11                        3395    622   1701  2.492 0.383     0.044     0.016       16     2.2
+7Networks_LH_Vis_12                        1473    514    883  1.646 0.370     0.064     0.015        7     0.9
+7Networks_LH_Vis_13                        5106   1075   2483  1.989 0.445     0.059     0.021       36     5.1
+7Networks_LH_Vis_14                        6337   1076   2380  2.096 0.349     0.037     0.010       19     2.6
+7Networks_LH_SomMot_1                      1579    670   1940  2.672 0.368     0.058     0.010        8     0.8
+7Networks_LH_SomMot_2                      3133    728   1909  2.412 0.432     0.038     0.006       10     0.7
+7Networks_LH_SomMot_3                      2438    540   1202  2.366 0.425     0.036     0.008        5     0.8
+7Networks_LH_SomMot_4                      2549    600   1997  2.768 0.369     0.051     0.014       12     1.6
+7Networks_LH_SomMot_5                      1527    320   1032  2.937 0.336     0.031     0.006        2     0.4
+7Networks_LH_SomMot_6                      3028    792   1844  2.145 0.673     0.051     0.013       14     1.5
+7Networks_LH_SomMot_7                      1329    413   1023  2.411 0.572     0.057     0.013        6     0.7
+7Networks_LH_SomMot_8                      3580    400   1105  2.482 0.413     0.020     0.005        5     0.8
+7Networks_LH_SomMot_9                      2307    549   1504  2.330 0.414     0.037     0.008        5     0.7
+7Networks_LH_SomMot_10                     2246    709   1533  1.879 0.593     0.059     0.012       10     1.1
+7Networks_LH_SomMot_11                     2845    437   1076  2.278 0.321     0.034     0.010        9     1.1
+7Networks_LH_SomMot_12                     2176    706   2017  2.548 0.407     0.052     0.010        7     0.9
+7Networks_LH_SomMot_13                     2234    358    837  2.201 0.489     0.030     0.007        5     0.6
+7Networks_LH_SomMot_14                     1948    649   1816  2.632 0.440     0.067     0.015       10     1.3
+7Networks_LH_SomMot_15                     5905   1234   3638  2.455 0.467     0.041     0.011       20     2.5
+7Networks_LH_SomMot_16                     1213    305    572  1.763 0.447     0.035     0.005        3     0.3
+7Networks_LH_DorsAttn_Post_1               6862   1355   4658  2.812 0.685     0.044     0.014       30     4.1
+7Networks_LH_DorsAttn_Post_2               2046    592   2337  2.911 0.856     0.071     0.024       18     2.5
+7Networks_LH_DorsAttn_Post_3               3835    451   1038  2.199 0.391     0.023     0.007        8     1.1
+7Networks_LH_DorsAttn_Post_4               2002    591   1588  2.358 0.463     0.051     0.012        7     1.1
+7Networks_LH_DorsAttn_Post_5               2796    517   1183  2.360 0.319     0.033     0.007        6     0.7
+7Networks_LH_DorsAttn_Post_6               2046    389    813  2.024 0.380     0.040     0.010        8     0.9
+7Networks_LH_DorsAttn_Post_7               6162    909   2373  2.293 0.459     0.031     0.009       19     2.1
+7Networks_LH_DorsAttn_Post_8               4802    738   1937  2.241 0.483     0.032     0.009       16     1.8
+7Networks_LH_DorsAttn_Post_9               4236    631   1935  2.637 0.476     0.035     0.014       17     2.0
+7Networks_LH_DorsAttn_Post_10              3820    554   1610  2.450 0.614     0.029     0.008       11     1.2
+7Networks_LH_DorsAttn_FEF_1                1461    582   1489  2.530 0.311     0.066     0.012        5     0.8
+7Networks_LH_DorsAttn_FEF_2                1204    470   1267  2.483 0.373     0.085     0.020       11     1.0
+7Networks_LH_DorsAttn_PrCv_1               1607    445   1283  2.670 0.402     0.051     0.012        6     0.8
+7Networks_LH_SalVentAttn_ParOper_1         2858    407   1120  2.548 0.701     0.019     0.005        3     0.5
+7Networks_LH_SalVentAttn_ParOper_2         1946    466   1459  2.569 0.478     0.056     0.015       13     1.2
+7Networks_LH_SalVentAttn_ParOper_3         1309    357   1006  2.398 0.569     0.060     0.015        9     0.8
+7Networks_LH_SalVentAttn_FrOperIns_1       7330   1125   4127  3.575 0.884     0.034     0.012       25     4.2
+7Networks_LH_SalVentAttn_FrOperIns_2       2579    371    866  2.519 0.485     0.023     0.006        3     0.6
+7Networks_LH_SalVentAttn_FrOperIns_3       3621    357    869  2.676 0.392     0.015     0.004        3     0.6
+7Networks_LH_SalVentAttn_FrOperIns_4       1902    440   1400  2.699 0.455     0.041     0.010        7     0.8
+7Networks_LH_SalVentAttn_PFCl_1            3058   1086   3068  2.526 0.484     0.068     0.018       21     2.7
+7Networks_LH_SalVentAttn_Med_1             5544    594   1876  2.785 0.589     0.020     0.005        9     1.3
+7Networks_LH_SalVentAttn_Med_2             4679    588   1369  2.391 0.465     0.019     0.004        4     0.7
+7Networks_LH_SalVentAttn_Med_3             1678    428   1581  3.188 0.500     0.054     0.017        7     1.2
+7Networks_LH_Limbic_OFC_1                  9019    445   1546  3.418 0.723     0.011     0.004       10     1.6
+7Networks_LH_Limbic_OFC_2                 15966   1728   5437  2.620 0.855     0.024     0.008       52     6.0
+7Networks_LH_Limbic_TempPole_1             4513    876   3953  3.042 0.671     0.040     0.014       19     2.8
+7Networks_LH_Limbic_TempPole_2             3119    714   2454  2.796 0.641     0.047     0.013       17     2.1
+7Networks_LH_Limbic_TempPole_3             7497    419   2269  3.589 0.797     0.016     0.008       18     2.6
+7Networks_LH_Limbic_TempPole_4             2928    318   1046  2.984 0.861     0.016     0.004        4     0.5
+7Networks_LH_Cont_Par_1                    1113    274    876  2.674 0.364     0.060     0.015        7     0.7
+7Networks_LH_Cont_Par_2                    3502    593   1329  2.148 0.348     0.036     0.010       11     1.6
+7Networks_LH_Cont_Par_3                    1164    275    662  2.217 0.371     0.055     0.014        7     0.6
+7Networks_LH_Cont_Temp_1                   1488    536   2107  2.978 0.892     0.083     0.024       13     1.5
+7Networks_LH_Cont_OFC_1                    2991    444   1417  3.056 0.743     0.028     0.007        6     0.9
+7Networks_LH_Cont_PFCl_1                   2079    726   2191  2.406 0.578     0.083     0.024       19     2.3
+7Networks_LH_Cont_PFCl_2                   4167    918   2260  2.284 0.408     0.053     0.016       25     3.2
+7Networks_LH_Cont_PFCl_3                   3810   1330   3544  2.361 0.426     0.076     0.021       29     3.6
+7Networks_LH_Cont_PFCl_4                   2613    945   2557  2.554 0.305     0.068     0.014       15     1.6
+7Networks_LH_Cont_PFCl_5                   1511    644   1621  2.348 0.483     0.082     0.016       11     1.1
+7Networks_LH_Cont_pCun_1                   2401    577   1198  2.062 0.517     0.065     0.030       31     2.8
+7Networks_LH_Cont_Cing_1                   5971    555    673  1.311 0.776     0.021     0.004       15     1.1
+7Networks_LH_Cont_Cing_2                   2730    358    688  1.987 1.175     0.030     0.007       10     0.7
+7Networks_LH_Default_Temp_1                2491    859   3996  3.230 0.806     0.091     0.032       27     4.0
+7Networks_LH_Default_Temp_2                 938    443   1471  2.588 0.539     0.130     0.036       24     2.0
+7Networks_LH_Default_Temp_3                2571    947   3027  2.729 0.627     0.068     0.014       15     1.8
+7Networks_LH_Default_Temp_4                2089    701   2169  2.636 0.591     0.048     0.010        8     1.0
+7Networks_LH_Default_Temp_5                3617    719   2081  2.441 0.488     0.040     0.012       19     2.1
+7Networks_LH_Default_Par_1                 2544    625   1673  2.547 0.498     0.049     0.014       12     1.7
+7Networks_LH_Default_Par_2                 3189    604   1694  2.528 0.474     0.041     0.012       13     1.8
+7Networks_LH_Default_Par_3                 1078    285    867  2.553 0.527     0.061     0.018        6     0.6
+7Networks_LH_Default_Par_4                 5111    971   2874  2.666 0.401     0.047     0.016       27     3.5
+7Networks_LH_Default_PFC_1                 6659    625   2099  3.086 0.743     0.022     0.007       15     2.1
+7Networks_LH_Default_PFC_2                 7526    799   1917  2.431 1.040     0.021     0.006       18     2.2
+7Networks_LH_Default_PFC_3                 1410    394    963  2.073 0.494     0.068     0.020       12     1.3
+7Networks_LH_Default_PFC_4                 5683   1098   3522  2.603 0.469     0.050     0.016       35     4.5
+7Networks_LH_Default_PFC_5                 2252    473   1445  2.582 0.399     0.047     0.014       11     1.4
+7Networks_LH_Default_PFC_6                 3691    640   1932  2.670 0.710     0.037     0.012       14     2.2
+7Networks_LH_Default_PFC_7                 4435    827   3065  3.006 0.470     0.046     0.015       21     2.8
+7Networks_LH_Default_PFC_8                 5707    714   1923  2.464 1.031     0.025     0.009       15     2.1
+7Networks_LH_Default_PFC_9                 2147    543   2008  3.137 0.359     0.059     0.015       13     1.4
+7Networks_LH_Default_PFC_10                2736    480   2092  3.479 0.472     0.031     0.008        7     1.0
+7Networks_LH_Default_PFC_11                1465    684   2102  2.690 0.433     0.093     0.021       13     1.3
+7Networks_LH_Default_PFC_12                2076    811   2268  2.737 0.486     0.071     0.015       13     1.3
+7Networks_LH_Default_PFC_13                1421    460   1600  3.076 0.320     0.070     0.017        9     0.9
+7Networks_LH_Default_pCunPCC_1             9311   1062   2342  2.252 0.822     0.020     0.005       14     2.1
+7Networks_LH_Default_pCunPCC_2             7242    804   2377  2.546 0.396     0.024     0.007       17     2.1
+7Networks_LH_Default_pCunPCC_3             2924    292    962  2.769 0.403     0.024     0.009        7     1.1
+7Networks_LH_Default_pCunPCC_4             4698    631   1919  2.568 0.437     0.031     0.010       16     2.1
+7Networks_LH_Default_PHC_1                 8324   1080   2885  2.371 0.735     0.023     0.006       16     2.1
