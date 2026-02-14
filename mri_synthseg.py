@@ -735,7 +735,7 @@ def build_model(model_file_segmentation,
 
         # smooth posteriors
         last_tensor = net.output
-        last_tensor._keras_shape = tuple(last_tensor.get_shape().as_list())
+        last_tensor._keras_shape = tuple(last_tensor.shape)
         last_tensor = GaussianBlur(sigma=0.5)(last_tensor)
         net = keras.Model(inputs=net.inputs, outputs=last_tensor)
 
@@ -787,7 +787,7 @@ def build_model(model_file_segmentation,
 
         # smooth predictions
         last_tensor = net.output
-        last_tensor._keras_shape = tuple(last_tensor.get_shape().as_list())
+        last_tensor._keras_shape = tuple(last_tensor.shape)
         last_tensor = GaussianBlur(sigma=0.5)(last_tensor)
         net = keras.Model(inputs=net.inputs, outputs=[net.get_layer(name_segm_prediction_layer).output, last_tensor])
 
@@ -1234,7 +1234,7 @@ def conv_enc(nb_features,
 
         if batch_norm is not None:
             name = '%s_bn_down_%d' % (prefix, level)
-            last_tensor = keras.layers.BatchNormalization(axis=batch_norm, name=name, fused=False)(last_tensor)
+            last_tensor = keras.layers.BatchNormalization(axis=batch_norm, name=name)(last_tensor)
 
         # max pool if we're not at the last level
         if level < (nb_levels - 1):
@@ -1242,7 +1242,7 @@ def conv_enc(nb_features,
             last_tensor = maxpool(pool_size=pool_size, name=name, padding=padding)(last_tensor)
 
     # create the model and return
-    model = keras.Model(inputs=input_tensor, outputs=[last_tensor], name=model_name)
+    model = keras.Model(inputs=input_tensor, outputs=last_tensor, name=model_name)
     return model
 
 
@@ -1294,7 +1294,7 @@ def conv_dec(nb_features,
     else:
         input_tensor = input_model.input
         last_tensor = input_model.output
-        input_shape = last_tensor.shape.as_list()[1:]
+        input_shape = list(last_tensor.shape)[1:]
 
     # vol size info
     ndims = len(input_shape) - 1
@@ -1369,7 +1369,7 @@ def conv_dec(nb_features,
 
         if batch_norm is not None:
             name = '%s_bn_up_%d' % (prefix, level)
-            last_tensor = keras.layers.BatchNormalization(axis=batch_norm, name=name, fused=False)(last_tensor)
+            last_tensor = keras.layers.BatchNormalization(axis=batch_norm, name=name)(last_tensor)
 
     # Compute likelyhood prediction (no activation yet)
     name = '%s_likelihood' % prefix
@@ -2570,7 +2570,7 @@ def gaussian_kernel(sigma, max_sigma=None, blur_range=None, separable=True):
     else:
         assert max_sigma is not None, 'max_sigma must be provided when sigma is given as a tensor'
         sigma_tens = sigma
-    shape = sigma_tens.get_shape().as_list()
+    shape = list(sigma_tens.shape)
 
     # get n_dims and batchsize
     if shape[0] is not None:
@@ -2689,7 +2689,7 @@ def meshgrid(*args, **kwargs):
         output.append(tf.reshape(tf.stack(x), (s0[:i] + (-1,) + s0[i + 1::])))
     # Create parameters for broadcasting each tensor to the full size
     shapes = [tf.size(x) for x in args]
-    sz = [x.get_shape().as_list()[0] for x in args]
+    sz = [list(x.shape)[0] for x in args]
 
     # output_dtype = tf.convert_to_tensor(args[0]).dtype.base_dtype
     if indexing == "xy" and ndim > 1:

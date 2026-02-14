@@ -25,9 +25,6 @@ def main():
          # remove extension
         sid = os.path.splitext(fname)[0]
     
-    # Remove standard preprocessing suffixes to get cleaner ID if needed
-    sid = sid.replace("_final_preproc", "").replace("_conform", "")
-    
     # Set SUBJECTS_DIR env var
     os.environ["SUBJECTS_DIR"] = SUBJECTS_DIR
     print(f"export SUBJECTS_DIR={SUBJECTS_DIR}")
@@ -38,11 +35,11 @@ def main():
         mri_file = run_step1_input(input_path, sid, SUBJECTS_DIR)
         if not mri_file: return
         
-        # NOTE: Subsequent steps need to be updated to accept SID and know where to look.
-        # Step 5 (CorticalFlow) was recently refactored to look into SUBJECTS_DIR type structure 
-        # via cortical_flow_recon.py, but we need to ensure the wrapper calls it correctly.
+        # Step 4: Segmentation (SynthSeg) -> mri/aseg.mgz
+        seg_file = run_step4_segmentation(mri_file, sid)
+        if not seg_file: return
         
-        # Step 5: Cortical Surface Reconstruction (CorticalFlow)
+        # Step 5: Cortical Surface Reconstruction (CorticalFlow) -> surf/*h.white, *h.pial
         cf_output_dir = run_step5_cortical_flow(mri_file, sid) 
         if not cf_output_dir: print("⚠️ CorticalFlow failed, continuing pipeline...")
 
