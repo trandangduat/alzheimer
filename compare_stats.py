@@ -10,7 +10,7 @@ def parse_freesurfer_stats(file_path):
     Returns a DataFrame with the data.
     """
     if not os.path.exists(file_path):
-        print(f"❌ File not found: {file_path}")
+        print(f"[ERROR] File not found: {file_path}")
         return None
 
     # Read all lines
@@ -29,7 +29,7 @@ def parse_freesurfer_stats(file_path):
             data_lines.append(line.strip().split())
 
     if not header_line:
-        print(f"❌ Could not find header in {file_path}")
+        print(f"[ERROR] Could not find header in {file_path}")
         return None
 
     # Create DataFrame
@@ -44,11 +44,11 @@ def parse_freesurfer_stats(file_path):
                 pass
         return df
     except Exception as e:
-        print(f"❌ Error parsing DataFrame: {e}")
+        print(f"[ERROR] Error parsing DataFrame: {e}")
         return None
 
 def compare_subject(sid, subjects_ref_dir, subjects_target_dir):
-    print(f"\n🔍 Comparing Subject: {sid}")
+    print(f"\n[INFO] Comparing Subject: {sid}")
     print(f"   Reference: {subjects_ref_dir}")
     print(f"   Target   : {subjects_target_dir}")
 
@@ -93,7 +93,7 @@ def compare_subject(sid, subjects_ref_dir, subjects_target_dir):
             col_tgt = f"{metric_col}_tgt"
             
             if col_ref not in merged.columns or col_tgt not in merged.columns:
-                print(f"   ⚠️ Metric column {metric_col} not found.")
+                print(f"   [WARNING] Metric column {metric_col} not found.")
                 continue
                 
             # Calculations
@@ -134,7 +134,7 @@ def compare_subject(sid, subjects_ref_dir, subjects_target_dir):
         print(grouped)
         print("="*60)
     else:
-        print("\n❌ No valid stats compared.")
+        print("\n[ERROR] No valid stats compared.")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
