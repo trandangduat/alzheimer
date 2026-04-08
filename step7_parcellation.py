@@ -1,11 +1,11 @@
 import os
-from config import SUBJECTS_DIR, FREESURFER_AVERAGE_DIR, run_cmd_logged
+from config import SUBJECTS_DIR, FREESURFER_AVERAGE_DIR, SCHAEFER_GCS_ROOT, run_cmd_logged
 
 def run_step7_parcellation(subject_id):
     """
     BƯỚC 7: PARCELLATION (mris_ca_label)
     Input: surf/?h.sphere.reg
-    Output: label/?h.aparc.annot
+    Output: label/?h.aparc.schaefer2018_200_7.annot
     """
     print(f"\n[7/8] [PROCESSING] PARCELLATION (mris_ca_label) for {subject_id}...")
     
@@ -21,10 +21,10 @@ def run_step7_parcellation(subject_id):
             print(f"[WARNING] Registered sphere not found for {hemi} at {sphere_reg}. Skipping.")
             continue
             
-        out_annot = os.path.join(label_dir, f"{hemi}.aparc.annot")
+        out_annot = os.path.join(label_dir, f"{hemi}.aparc.schaefer2018_200_7.annot")
         
-        # Classifier file for Desikan-Killiany atlas
-        classifier = os.path.join(FREESURFER_AVERAGE_DIR, f"{hemi}.curvature.buckner40.filled.desikan_killiany.2010-03-25.gcs")
+        # Classifier file for Schaefer 2018 atlas
+        classifier = os.path.join(SCHAEFER_GCS_ROOT, f"{hemi}.Schaefer2018_200Parcels_7Networks.gcs")
         
         if not os.path.exists(classifier):
             print(f"[ERROR] Classifier not found: {classifier}")

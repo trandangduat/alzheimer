@@ -3,10 +3,10 @@ import sys
 import subprocess
 
 # Base paths
-BASE_DIR = r"/home/anhdomixi/alzheimer"
-SUBJECTS_INPUT_DIR = r"/home/anhdomixi/disc1"
+BASE_DIR = r"/mnt/c/Users/ADMIN/Desktop/MRI/alzheimer"
+SUBJECTS_INPUT_DIR = r"/home/trandangduat/freesurfer-test/disc1"
 SUBJECT_LIST = [
-    "0012"
+    "0013"
 ]
 
 SUBJECTS_DIR = os.path.join(BASE_DIR, "subjects2")
@@ -19,13 +19,13 @@ USE_SYNTHSTRIP = True # Set to True to use SynthStrip, False for HD-BET
 TOOLS = {
     "fastsurfer_root": os.path.join(BASE_DIR, "tools", "FastSurfer"),
     "cortical_flow_root": os.path.join(BASE_DIR, "tools", "CorticalFlow"),
-    "s3reg_root": os.path.join(BASE_DIR, "tools", "S3Reg")
+    "sugar_docker_image": "ninganme/sugar:latest",   # SUGAR registration tool
 }
 
 # Atlas paths
-SCHAEFER_GCS_ROOT = r"/home/anhdomixi/gcs_Schaefer2018_update20190916/gcs"
+SCHAEFER_GCS_ROOT = r"/mnt/c/Users/ADMIN/Desktop/MRI/gcs_Schaefer2018_update20190916/gcs"
 FREESURFER_AVERAGE_DIR = r"/usr/local/freesurfer/8.1.0/average"
-S3REG_ATLAS_DIR = os.path.join(TOOLS["s3reg_root"], "atlas")
+# S3REG_ATLAS_DIR removed — registration now uses SUGAR
 
 # Subdirectories for each step - DEPRECATED in favor of Subject-Centric structure
 # We keep this empty or minimal if other scripts rely on importing DIRS, 

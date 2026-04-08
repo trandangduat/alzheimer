@@ -88,7 +88,7 @@ def process_subject(sid):
     )
 
     # Ensure subject specific dirs exist
-    subj_dir = os.path.join(SUBJECTS_DIR, f"OAS1_{sid}_MR1")
+    subj_dir = os.path.join(SUBJECTS_DIR, sid)
     scripts_dir = os.path.join(subj_dir, "scripts")
     os.makedirs(scripts_dir, exist_ok=True)
 
@@ -208,6 +208,7 @@ def process_subject(sid):
         log_message("Step 8: Anatomical Stats finished")
         if not stats_result:
             log_message("[WARNING] Anatomical Stats failed.")
+
 
         log_message("--- PIPELINE COMPLETED SUCCESSFULLY ---")
 

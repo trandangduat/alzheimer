@@ -15,7 +15,7 @@ def run_step5_surface_reconstruction(input_file, subject_id):
     recon_script = "./recon_all.sh"
 
     # Environment Setup
-    venv_path = os.path.join(cortical_flow_root, ".venv")
+    venv_path = os.path.join(cortical_flow_root, "cortical-flow")
     if sys.platform == "win32":
         venv_python = os.path.join(venv_path, "Scripts", "python.exe")
     else:
@@ -56,9 +56,18 @@ def run_step5_surface_reconstruction(input_file, subject_id):
             print("[ERROR] Lỗi Surface Reconstruction (Exit Code != 0)")
             return None
 
+        # Kiểm tra thực tế file output có tồn tại không
+        expected_lh_pial  = os.path.join(SUBJECTS_DIR, subject_id, "surf", "lh.pial")
+        expected_lh_white = os.path.join(SUBJECTS_DIR, subject_id, "surf", "lh.white")
+        if not os.path.exists(expected_lh_pial) or not os.path.exists(expected_lh_white):
+            print(f"[ERROR] Surface Reconstruction hoàn thành nhưng KHÔNG tạo ra file surf/lh.pial hoặc lh.white!")
+            print(f"        Kiểm tra lại predict.py / recon_all.sh. Có thể thiếu dependency (omegaconf, pytorch3d...).")
+            return None
+
         print(f" [SUCCESS] Surface Reconstruction thành công. Output tại: {os.path.join(SUBJECTS_DIR, subject_id)}")
         return os.path.join(SUBJECTS_DIR, subject_id)
 
     except Exception as e:
         print(f"[ERROR] Lỗi gọi subprocess Surface Reconstruction: {e}")
         return None
+
