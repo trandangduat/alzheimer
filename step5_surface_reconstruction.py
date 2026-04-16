@@ -35,6 +35,12 @@ def run_step5_surface_reconstruction(input_file, subject_id):
 
     # Prepare environment with venv python for the shell script to use
     env = os.environ.copy()
+    
+    # Lọc bỏ các biến của Conda để tránh xung đột thư viện C++ (libstdc++) khiến `import torch` bị treo
+    keys_to_remove = [k for k in env if k.startswith("CONDA_")] + ["LD_LIBRARY_PATH", "PYTHONPATH"]
+    for k in keys_to_remove:
+        env.pop(k, None)
+        
     if os.path.exists(venv_python):
         env["VENV_PYTHON"] = venv_python
         print(f" >>> Using python at: {venv_python}")

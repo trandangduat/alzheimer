@@ -78,16 +78,36 @@ def run_monitored(step_name, fn, sid, scripts_dir, stats_path, subject_stats_pat
 
 
 def process_subject(sid):
-    input_path = os.path.join(
-        SUBJECTS_INPUT_DIR,
-        f"OAS1_{sid}_MR1",
-        "PROCESSED",
-        "MPRAGE",
-        "SUBJ_111",
-        f"OAS1_{sid}_MR1_mpr_n4_anon_sbj_111.img"
-    )
+    # # FOR OASIS
+    # input_path = os.path.join(
+    #     SUBJECTS_INPUT_DIR,
+    #     f"OAS1_{sid}_MR1",
+    #     "PROCESSED",
+    #     "MPRAGE",
+    #     "SUBJ_111",
+    #     f"OAS1_{sid}_MR1_mpr_n4_anon_sbj_111.img"
+    # )
 
+    # FOR ADNI: pick any .nii file directly inside SUBJECTS_INPUT_DIR/<sid>
+    sid_input_dir = os.path.join(SUBJECTS_INPUT_DIR, f"{sid}")
+    if not os.path.isdir(sid_input_dir):
+        print(f"[ERROR] Input directory not found: {sid_input_dir}")
+        return
+
+    nii_files = sorted(
+        [
+            os.path.join(sid_input_dir, name)
+            for name in os.listdir(sid_input_dir)
+            if name.lower().endswith(".nii") and os.path.isfile(os.path.join(sid_input_dir, name))
+        ]
+    )
+    if not nii_files:
+        print(f"[ERROR] No .nii file found in: {sid_input_dir}")
+        return
+
+    input_path = nii_files[0]
     # Ensure subject specific dirs exist
+
     subj_dir = os.path.join(SUBJECTS_DIR, sid)
     scripts_dir = os.path.join(subj_dir, "scripts")
     os.makedirs(scripts_dir, exist_ok=True)

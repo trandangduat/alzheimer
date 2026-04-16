@@ -5,4 +5,5 @@ __pycache__
 subjects/*
 models/*
 subjects2/*
+pipeline-subjects/*
 freesurfer_result/*
