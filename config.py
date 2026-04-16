@@ -5,18 +5,15 @@ import subprocess
 # Base paths
 BASE_DIR = r"/mnt/c/Users/ADMIN/Desktop/MRI/alzheimer"
 
-# #FOR OASIS
-# SUBJECTS_INPUT_DIR = r"/home/trandangduat/freesurfer-test/disc1"
-# SUBJECT_LIST = [
-#     "0006",
-#     "0012",
-#     "0022",
-#     "0023"
-# ]
+#FOR OASIS
+SUBJECTS_INPUT_DIR = r"/home/trandangduat/freesurfer-test/disc1"
+SUBJECT_LIST = [
+    "0006"
+]
 
-# FOR ADNI
-SUBJECTS_INPUT_DIR = r"/mnt/c/Users/ADMIN/Desktop/MRI/ADNI/OneDrive_1_4-10-2026/009_S_4741/MPRAGE_GRAPPA2/2016-08-24_15_47_32.0"
-SUBJECT_LIST = [ "I776974" ]
+# # FOR ADNI
+# SUBJECTS_INPUT_DIR = r"/mnt/c/Users/ADMIN/Desktop/MRI/ADNI/OneDrive_1_4-10-2026/009_S_4741/MPRAGE_GRAPPA2/2016-08-24_15_47_32.0"
+# SUBJECT_LIST = [ "I776974" ]
 
 
 SUBJECTS_DIR = os.path.join(BASE_DIR, "pipeline-subjects")

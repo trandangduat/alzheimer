@@ -1,0 +1,1 @@
+sudo docker run -it --rm --gpus all -v /mnt/c/Users/ADMIN/Desktop/MRI/freesurfer_results_020726/home/duattran_05/freesurfer_output:/data -v /mnt/c/Users/ADMIN/Desktop/MRI/try-SUGAR/outputs:/out ninganme/sugar:latest --fsd /usr/local/freesurfer --sd /data --out /out --sid OAS1_0006_MR1 --hemi lh --device cuda

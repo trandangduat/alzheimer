@@ -1,4 +1,4 @@
-tools/*
+# tools/*
 .venv
 __pycache__
 *.pyc
@@ -7,3 +7,10 @@ models/*
 subjects2/*
 pipeline-subjects/*
 freesurfer_result/*
+*pth
+*mdl
+tools/CorticalFlow/cortical-flow/*
+tools/CorticalFlow/resources/*
+FastCSR
+FastSurfer
+pytorch3d-0.7.9

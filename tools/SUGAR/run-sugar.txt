@@ -1,0 +1,24 @@
+python predict.py \
+  --sd "/home/anhdomixi/frsf_output" \
+  --out reg-output \
+  --fsd "/usr/local/freesurfer/8.1.0" \
+  --sid OAS1_0006_MR1 \
+  --model-path "/home/anhdomixi/try-surf-reg/SUGAR/best_model" \
+  --hemi lh \
+  --device cpu
+
+
+sudo docker run -it --rm --gpus all \
+-v /mnt/c/Users/ADMIN/Desktop/MRI/freesurfer_results_020726/home/duattran_05/freesurfer_output:/data \
+-v /mnt/c/Users/ADMIN/Desktop/MRI/try-SUGAR/outputs:/out sugar \
+--fsd /usr/local/freesurfer \
+--sd /data \
+--out /out \
+--sid sub01 \
+--hemi lh \
+--device cuda
+
+sudo docker run -it --rm --gpus all 
+-v /mnt/c/Users/ADMIN/Desktop/MRI/freesurfer_results_020726/home/duattran_05/freesurfer_output:/data 
+-v /mnt/c/Users/ADMIN/Desktop/MRI/try-SUGAR/outputs:/out ninganme/sugar:latest 
+--fsd /usr/local/freesurfer --sd /data --out /out --sid OAS1_0006_MR1 --hemi lh --device cuda
